@@ -12,7 +12,7 @@ class MinHeap:
         # Do not edit the line below.
         self.heap = self.buildHeap(array)
 
-    def buildHeap(self, array):
+    def buildHeap1(self, array):
         heapArray = []
         for item in array:
             if len(heapArray) == 0:
@@ -36,6 +36,10 @@ class MinHeap:
 
         return heapArray       
 
+    def buildHeap(self, array):
+
+
+        return heapArray       
 
         
 
