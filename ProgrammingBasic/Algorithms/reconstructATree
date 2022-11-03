@@ -1,0 +1,54 @@
+# This is an input class. Do not edit.
+class BST:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+def reconstructBst(preOrderTraversalValues):
+    if preOrderTraversalValues is None:
+        return None
+        
+    arrayLength = len(preOrderTraversalValues)
+    if arrayLength == 0:
+        return None
+
+    headValue = preOrderTraversalValues[0]
+    head = BST(preOrderTraversalValues[0])
+
+    if arrayLength == 1:
+        return head
+
+    if arrayLength > 2:
+        head.left = BST(preOrderTraversalValues[1])
+        
+    for currentIndex in range(2, arrayLength):
+        node = head.left
+        currentIndexValue = preOrderTraversalValues[currentIndex]
+        if  currentIndexValue < headValue:
+            while node is not None:
+                if node.value > currentIndexValue:
+                    node = node.left
+                else:
+                    node = node.right
+            node = BST(currentIndexValue)
+        else:
+            if head.right is None:
+                head.right = currentIndexValue
+                continue
+            
+            node = head.right
+            
+            while node is not None:
+                if node.value < currentIndexValue:
+                    node = node.left
+                else:
+                    node = node.right
+                    
+            node = BST(currentIndexValue)
+
+        return head
+
+
+aaa = reconstructBst([10, 4, 2, 1, 5, 17, 19, 18])
