@@ -1,0 +1,112 @@
+def waterfallStreams(array, source):
+    rowAbove = array[0][:]
+    rowAbove[source] = -1
+	
+    for row in range(1,len(array)):
+        currentRow = array[row][:]
+
+        for idx in range(len(rowAbove)):
+          valueAbove = rowAbove[idx]
+          hasWaterAbove = valueAbove < 0
+          hasBlock = currentRow[idx] == 1
+
+          if not hasWaterAbove:
+            continue
+
+          if not hasBlock:
+            currentRow[idx] += valueAbove
+            continue
+          
+          splitWater = valueAbove / 2
+          right = idx
+
+
+          while right + 1 < len(rowAbove):
+
+            right += 1
+            if rowAbove[right] == 1:
+              break
+
+            if currentRow[right] != 1:
+              currentRow[right] += splitWater
+              break
+
+          left = idx         
+          while left - 1 >= 0:
+            left -= 1
+            if rowAbove[left] == 1:
+              break
+
+            if currentRow[left] != 1:
+              currentRow[left] += splitWater
+              break
+
+
+          
+        rowAbove = currentRow
+
+        
+    finalPercentages = list(map(lambda num: num * -100, rowAbove))   
+
+    return finalPercentages
+
+
+array = [
+  [0, 0, 0, 0, 0, 0, 0],
+  [1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [1, 1, 1, 0, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1],
+  [0, 0, 0, 0, 0, 0, 0]
+]
+
+array1 =[
+    [0],
+    [0],
+    [0],
+    [0],
+    [0],
+    [1],
+    [0]
+  ]
+
+array2 = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0, 0],
+    [0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0]
+]
+
+array3 = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 1, 0, 0, 0, 1],
+    [0, 0, 1, 0, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 1, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
+]
+
+
+array4 = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+
+print(waterfallStreams(array,3))

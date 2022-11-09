@@ -30,4 +30,4 @@ def isPalindrome(string):
 # print ("a" == "a")
 
 
-print (3>2>1)
+print (3>(5 or 4))
