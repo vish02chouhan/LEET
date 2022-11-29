@@ -12,7 +12,6 @@ def howSum(sum, array, oldOutput, output = []):
         if result is not None:
             result.append(item)
             return result
-        else
 
     return None
 

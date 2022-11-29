@@ -1,38 +1,48 @@
-class SuffixTrie:    
-    def __init__(self, string):        
-        self.root = {}        
-        self.endSymbol = "*"        
-        self.populateSuffixTrieFrom(string)    
-
-    # O(n^2) time | O(n^2) space    
-    def populateSuffixTrieFrom(self, string):  
-        for i in range(len(string)):
-            self.insertSubstringStartingAt(i,string)      
-      
-
-    def insertSubstringStartingAt(self, i, string): 
-        node = self.root 
-        for j in range(i, len(string)):
-            character = string[j]
-            if character not in node:
-                node[character] = {}
-                node = node[character]
-                node[self.endSymbol] = True
+class SuffixTrie:
+    def __init__(self, string):
+        self.root = {}
+        self.endSymbol = '*'
+        self.populateSuffixTrieFrom(string)
 
 
-   
-                
-    # O(m) time | O(1) space    
-    def contains(self, string): 
-        node = self.root        
-        for letter in string:            
-            if letter not in node:                
-                return False            
-        node = node[letter]        
-        return self.endSymbol in node     
+    def populateSuffixTrieFrom(self, string):
+        for idx in range(len(string)):
+            self.insetSufffixTrieAt(string[idx:])
+
+        pass
 
 
 
 
-suff = SuffixTrie('babc')
-suff.contains('abc')
+    def insetSufffixTrieAt(self, string):
+        node = self.root
+        for item in string:
+
+            if item not in node:
+                node[item] = {}
+
+            node = node[item]
+
+        
+        node[self.endSymbol] = True
+
+
+    def contains(self, subString):
+        node = self.root
+        for item in subString:
+            if item not in node:
+                return False
+            
+            node = node[item]
+        
+        if node[self.endSymbol]:
+            return True
+
+        return False
+
+
+
+suffixTrie = SuffixTrie('babc')
+
+print(suffixTrie.contains('abc'))
+            

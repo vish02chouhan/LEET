@@ -15,8 +15,8 @@ class SuffixTrie:
             letter = string[j]            
             if letter not in node:                
                 node[letter] = {}            
-                node = node[letter]        
-                node[self.endSymbol] = True    
+            node = node[letter]        
+        node[self.endSymbol] = True    
                 
     # O(m) time | O(1) space    
     def contains(self, string):        
