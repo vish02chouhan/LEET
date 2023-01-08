@@ -1,4 +1,4 @@
-def howSum(sum, array, oldOutput, output = []):
+def howSum(sum, array, output = []):
 
     if sum == 0:
         return []
@@ -8,7 +8,7 @@ def howSum(sum, array, oldOutput, output = []):
     
     for item in array:
         remainder = sum - item
-        result = howSum(remainder,array,oldOutput, output)
+        result = howSum(remainder,array, output)
         if result is not None:
             result.append(item)
             return result

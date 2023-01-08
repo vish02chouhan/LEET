@@ -11,10 +11,7 @@ def hasSingleCycle(array):
         if trackingArray[left] > 1:
             break
             
-        
         counter -= 1
-
-
 
         jump = array[left]
         left =  left + jump 
