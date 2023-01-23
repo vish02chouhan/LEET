@@ -17,34 +17,59 @@
 # This process continues until the element is in its correct position and the heap property is 
 # restored.
 
-class MinHeap:
-    def __init__(self, array):
-        # Do not edit the line below.
-        self.heap = self.buildHeap(array)
+class MinHeap:    
+    def __init__(self, array):        
+        self.heap = self.buildHeap(array)    
+        
+    def buildHeap(self, array):     
+        first_parent = (len(array) - 1) // 2        
+        for parent in reversed(range(first_parent + 1)):
+            self.siftDown(parent, len(array)-1, array)        
+        return array    
+            
+    def siftDown(self, cidx, endidx, heap):        
+        child_one_idx = cidx * 2 + 1              
+        while child_one_idx <= endidx:            
+            child_two_idx = cidx * 2 + 2 if cidx * 2 + 2 <= endidx else -1            
+            if child_two_idx != -1 and heap[child_two_idx] < heap[child_one_idx]:                   
+                potential_swap_idx = child_two_idx            
+            else:                              
+                potential_swap_idx = child_one_idx                      
+            
+            if heap[potential_swap_idx] < heap[cidx]:                              
+                    self.swap(cidx, potential_swap_idx, heap)                
+                    cidx = potential_swap_idx
+                    child_one_idx = cidx * 2 +1
+            else:
+                    break
 
-    def buildHeap(self, array):
-        self.heap = []
-        for item in array:
-            self.heap.append(item)
-            self.siftUp()
 
-    def siftDown(self):
-        # Write your code here.
-        pass
+    def siftUp(self,idx,heap):
+        parent_idx = (idx-1)//2
+        while idx > 0 and heap[idx] < heap[parent_idx]:
+            self.swap(idx,parent_idx, heap)
+            idx = parent_idx
+            parent_idx = (idx-1)//2
 
-    def siftUp(self):
-        # Write your code here.
-        pass
+    def remove(self):               
+        self.swap(0, len(self.heap)-1, self.heap)              
+        min_value = self.heap.pop()              
+        self.siftDown(0, len(self.heap)-1, self.heap)          
+        return min_value    
+    
+    def insert(self, value):         
+        self.heap.append(value)               
+        self.siftUp(len(self.heap)-1, self.heap)  
 
     def peek(self):
-        # Write your code here.
-        pass
+      return self.heap[0]
+    
+    def swap(self, idx1, idx2, heap):             
+        heap[idx1], heap[idx2] = heap[idx2], heap[idx1]
 
-    def remove(self):
-        # Write your code here.
-        pass
 
-    def insert(self, value):
-        self.heap.append(value)
-        self.siftUp()
-        pass
+
+
+minHeap = MinHeap([48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41])
+
+debug = True

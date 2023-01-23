@@ -21,8 +21,8 @@ def buildSequence(array, sequences, currentIdx):
     return list(reversed(sequence))
 
 
-# array = [10, 70, 20, 30, 50, 11, 30]
+array = [10, 70, 20, 30, 50, 11, 30]
 
-array = [8, 12, 2, 3, 15, 5, 7]
+#array = [8, 12, 2, 3, 15, 5, 7]
 
 maxSumIncreasingSubsequence(array)

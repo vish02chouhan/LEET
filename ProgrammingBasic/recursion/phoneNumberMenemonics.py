@@ -1,21 +1,36 @@
+
 def phoneNumberMnemonics(phoneNumber):
-    
-    mnemonics = ['']
+  currentMenomics = [''] * len(phoneNumber)
+  menomicsResult = []
+  helper(0,currentMenomics, phoneNumber,menomicsResult)
+  
+  return menomicsResult
 
-    #1905
-    digitCharacterHash = {'0':'1','1':'1', '2':'abc', '3':'def', '4':'ghi', 
-                          '5':'jkl', '6':'mon','7':'pqr', 
-                          '8':'stuv', '9':'wxyz' }
-
-    for digit in phoneNumber:
-        currentCharacters = digitCharacterHash[digit]
-        for char in currentCharacters:
-            for i in range(len(mnemonics)):
-                
-                mnemonics[i] = mnemonics[i]+char
-
-
-    return [item for item in mnemonics if len(item)==len(phoneNumber)]
+def helper(idx, currentMenomics, phoneNumber, menomicsResult):
+  if idx == len(phoneNumber):
+    menomicsResult.append(''.join(currentMenomics))
+  else:
+    currentDigit = phoneNumber[idx]
+    letters = mnemonics[currentDigit]
+    for letter in letters:
+        currentMenomics[idx] = letter
+        helper(idx+1, currentMenomics, phoneNumber, menomicsResult)
+        
 
 
-print(phoneNumberMnemonics('1905'))
+
+
+mnemonics = {
+'0': ['0'],
+'1': ['1'],
+'2': ['a','b','c'],
+'3': ['d','e','f'],
+'4': ['g','h','i'],
+'5': ['j','k','l'],
+'6': ['m','n','o'],
+'7': ['p','q','r','s'],
+'8': ['t','u','v'],
+'9': ['w','x','y', 'z']
+
+}
+
