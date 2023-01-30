@@ -17,23 +17,6 @@
 # This process continues until the element is in its correct position and the heap property is 
 # restored.
 
-def sortKSortedArray(array, k):
-    minHeapWithKElements = MinHeap(array[: min(k + 1, len(array))])
-
-    nextIndexToInsertElement = 0
-    for idx in range(k + 1, len(array)):
-        minElement = minHeapWithKElements.remove()
-        array[nextIndexToInsertElement] = minElement
-        nextIndexToInsertElement += 1
-        currentElement = array[idx]
-        minHeapWithKElements.insert(currentElement)
-    while not minHeapWithKElements.isEmpty():
-        minElement = minHeapWithKElements.remove()
-        array[nextIndexToInsertElement] = minElement
-        nextIndexToInsertElement += 1
-    return array
-
-
 class MinHeap:
     def __init__(self, array):
         self.heap = self.buildHeap(array)
@@ -84,3 +67,23 @@ class MinHeap:
     
     def swap(self, i, j, heap):
         heap[i], heap[j] = heap[j], heap[i]
+
+
+def sortKSortedArray(array, k):
+    minHeapWithKElements = MinHeap(array[: min(k + 1, len(array))])
+
+    nextIndexToInsertElement = 0
+    for idx in range(k + 1, len(array)):
+        minElement = minHeapWithKElements.remove()
+        array[nextIndexToInsertElement] = minElement
+        nextIndexToInsertElement += 1
+        currentElement = array[idx]
+        minHeapWithKElements.insert(currentElement)
+    while not minHeapWithKElements.isEmpty():
+        minElement = minHeapWithKElements.remove()
+        array[nextIndexToInsertElement] = minElement
+        nextIndexToInsertElement += 1
+    return array
+
+
+print(sortKSortedArray([3, 2, 1, 5, 4, 7, 6, 5],3))

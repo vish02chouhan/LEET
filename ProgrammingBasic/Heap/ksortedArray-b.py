@@ -16,10 +16,10 @@ def sortKSortedArray(array, k):
         array[sortedIndex] = heapq.heappop(heap)        
         sortedIndex += 1        
         heapq.heappush(heap, array[i])    
-        while len(heap) > 0:        
-            array[sortedIndex] = heapq.heappop(heap)        
-            sortedIndex += 1    
+    while len(heap) > 0:        
+        array[sortedIndex] = heapq.heappop(heap)        
+        sortedIndex += 1    
     return array
 
 
-sortKSortedArray([3, 2, 1, 5, 4, 7, 6, 5],3)
+print(sortKSortedArray([3, 2, 1, 15, 14,8 , 5, 4, 7, 6, 5],3))

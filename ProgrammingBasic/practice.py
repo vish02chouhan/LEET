@@ -1,5 +1,8 @@
-text = "Python"
+words = ["this", "is", "not", "a", "simple", "boggle", "board", "test", "REPEATED", "NOTRE-PEATED"]
 
-sText = sorted(text)
+wordSet = set(words)
 
-print(sText)
+if 'th' in wordSet:
+    print('found')
+else:
+    print('not found')
