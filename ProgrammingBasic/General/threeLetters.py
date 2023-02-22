@@ -16,7 +16,8 @@ def helper(input,aConsecutive, bConsecutive, result):
         char = input[i]
         if len(result) < 3:
             result.append(char)
-        elif result[-1] == result[-2] == char
+        elif result[-1] == result[-2] == char:
+            pass
 
         helper(input, aConsecutive, bConsecutive, result)
 
